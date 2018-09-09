@@ -23,15 +23,17 @@ function Outcome(range, times) {
     return permutations;
   })();
 
-  return function chance(func) {
-    return outcomeArray.filter(func).length / outcomeArray.length * 100;
+  return function chance(description, func) {
+    var filtered = outcomeArray.filter(func);
+    console.log('\n'  + JSON.stringify(filtered).replace(/,(?=\[)/g, ' - ') + '\n\nProbability of ' + description + ': ' + filtered.length / outcomeArray.length * 100 + ' %');
   }
-
 }
 
 const sum = (a, b) => a + b;
+const sortToString = v => v.slice(0).sort().join('');
 
 var chance = Outcome([1, 2, 3, 4, 5, 6], 3) // input range (eg. dice), roll n times
 
-console.log(chance((v) => v.reduce(sum) > 15)) // example : sum greater than 15
-console.log(chance((v) => /(\d)\1{1}/.test(v.sort().join('')))); // example : has two of a kind
+chance('sum greater than 15' , v => v.reduce(sum) > 15) 
+chance('two of a kind', v => /(\d)\1{1}/.test(sortToString(v)));
+chance('rolling a five', v => v.includes(5));  
