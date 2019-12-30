@@ -36,10 +36,10 @@ const diceChance = () => {
 
 const birthDayChance = () => {
     
+     // the possibility of two out of n people having the same birthday
     const range = Array.from({length : 366}, (n,i) => i +1);
-
-    // the possibility of n people having the same birthday
-    var chance = simulatePermutationsWithRepititions(range, 100) // input range (eg. dice), roll n times
+    var n = 100;
+    var chance = simulatePermutationsWithRepititions(range, n) // input range (eg. dice), roll n times
     chance('two people having the same birthday', v => hasDuplicates(v));
 };
 
