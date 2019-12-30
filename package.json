@@ -1,0 +1,26 @@
+{
+  "name": "Probability-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "dev-algo": "webpack --watch main.js",
+    "dev-sim": "webpack --watch simulation.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/senner007/Probability-js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/senner007/Probability-js/issues"
+  },
+  "homepage": "https://github.com/senner007/Probability-js#readme",
+  "devDependencies": {
+    "nodemon-webpack-plugin": "^4.2.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}

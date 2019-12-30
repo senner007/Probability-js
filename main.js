@@ -1,6 +1,8 @@
+import {sum , hasDuplicates, chanceCurry} from "./helpers/helpers";
+
 function Outcome(range, times) {
 
-  var outcomeArray = (function permutateWithRepetitions(permutationOptions = range, permutationLength = times || permutationOptions.length) {
+  const outcomeArray = (function permutateWithRepetitions(permutationOptions = range, permutationLength = times || permutationOptions.length) {
     if (permutationLength === 1) {
       return permutationOptions.map(permutationOption => [permutationOption]);
     }
@@ -23,17 +25,10 @@ function Outcome(range, times) {
     return permutations;
   })();
 
-  return function chance(description, func) {
-    var filtered = outcomeArray.filter(func);
-    console.log('\n'  + JSON.stringify(filtered).replace(/,(?=\[)/g, ' - ') + '\n\nProbability of ' + description + ': ' + filtered.length / outcomeArray.length * 100 + ' %');
-  }
+  return chanceCurry.bind(outcomeArray);
 }
-
-const sum = (a, b) => a + b;
-const sortToString = v => v.slice(0).sort().join('');
-
 var chance = Outcome([1, 2, 3, 4, 5, 6], 3) // input range (eg. dice), roll n times
 
 chance('sum greater than 15' , v => v.reduce(sum) > 15) 
-chance('two of a kind', v => /(\d)\1{1}/.test(sortToString(v)));
+chance('two of a kind', v => hasDuplicates(v));
 chance('rolling a five', v => v.includes(5));  
