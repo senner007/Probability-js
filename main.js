@@ -1,34 +1,38 @@
-import {sum , hasDuplicates, chanceCurry} from "./helpers/helpers";
+import {sum , hasDuplicates} from "./helpers/helpers";
+import Outcome from "./src/permutationsWithRepetitions";
 
-function Outcome(range, times) {
+const diceChance = () => {
+    // var chance = simulatePermutationsWithRepititions([1, 2, 3, 4, 5, 6], 3) // input range (eg. dice), roll n times
+    var chance = Outcome({
+        mode : "compute",
+        range : [1, 2, 3, 4, 5, 6],
+        times : 3
+    }) // input range (eg. dice), roll n times
 
-  const outcomeArray = (function permutateWithRepetitions(permutationOptions = range, permutationLength = times || permutationOptions.length) {
-    if (permutationLength === 1) {
-      return permutationOptions.map(permutationOption => [permutationOption]);
-    }
+    chance('sum greater than 15' , v => v.reduce(sum) > 15) 
+    chance('two of a kind', v => hasDuplicates(v));
+    chance('rolling a five', v => v.includes(5));  
+};
 
-    // Init permutations array.
-    const permutations = [];
+diceChance();
 
-    // Go through all options and join it to the smaller permutations.
-    permutationOptions.forEach((currentOption) => {
-      const smallerPermutations = permutateWithRepetitions(
-        permutationOptions,
-        permutationLength - 1,
-      );
+const birthDayChance = () => {
+    
+     // the possibility of at least two out of n people having the same birthday
+    const range = Array.from({length : 366}, (n,i) => i +1);
+    var n = 100;
+    var chance = Outcome({
+        mode : "simulate",
+        range : range,
+        times : n
+    }) // input range (eg. dice), roll n times
+    chance('at least two people having the same birthday', v => hasDuplicates(v));
+};
 
-      smallerPermutations.forEach((smallerPermutation) => {
-        permutations.push([currentOption].concat(smallerPermutation));
-      });
-    });
+// birthDayChance();
 
-    return permutations;
-  })();
 
-  return chanceCurry.bind(outcomeArray);
-}
-var chance = Outcome([1, 2, 3, 4, 5, 6], 3) // input range (eg. dice), roll n times
 
-chance('sum greater than 15' , v => v.reduce(sum) > 15) 
-chance('two of a kind', v => hasDuplicates(v));
-chance('rolling a five', v => v.includes(5));  
+
+
+

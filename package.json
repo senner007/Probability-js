@@ -4,8 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "dev-algo": "webpack --watch main.js",
-    "dev-sim": "webpack --watch simulation.js"
+    "dev": "webpack --watch main.js"
   },
   "repository": {
     "type": "git",
