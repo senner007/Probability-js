@@ -2,12 +2,11 @@ import {sum , hasDuplicates} from "./helpers/helpers";
 import Outcome from "./src/permutationsWithRepetitions";
 
 const diceChance = () => {
-    // var chance = simulatePermutationsWithRepititions([1, 2, 3, 4, 5, 6], 3) // input range (eg. dice), roll n times
     var chance = Outcome({
         mode : "compute",
-        range : [1, 2, 3, 4, 5, 6],
-        times : 3
-    }) // input range (eg. dice), roll n times
+        range : [1, 2, 3, 4, 5, 6], // input range (eg. dice)
+        times : 3 // roll n times
+    });
 
     chance('sum greater than 15' , v => v.reduce(sum) > 15) 
     chance('two of a kind', v => hasDuplicates(v));
@@ -25,7 +24,8 @@ const birthDayChance = () => {
         mode : "simulate",
         range : range,
         times : n
-    }) // input range (eg. dice), roll n times
+    });
+    
     chance('at least two people having the same birthday', v => hasDuplicates(v));
 };
 
