@@ -30,7 +30,7 @@ const birthDayChance = () => {
     const range = Array.from({length : 366}, (n,i) => i +1);
     var n = 100;
     var chance = Outcome({
-        title : "the possibility of at least two out of 100 people having the same birthday",
+        title : "100 people with random birthdays",
         mode : "simulate",
         range : range,
         times : n,
