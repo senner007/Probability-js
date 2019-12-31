@@ -1,20 +1,36 @@
-import {chanceCurry} from "../helpers/helpers";
-
+var colors = require('colors/safe');
+colors.enable();
 export default function Outcome(options) {
 
     var outcomeArray;
     const range = options.range;
     const times = options.times;
+    const showData = options.showData
+    const accuracy = options.simulationAccuracy
+    const title = options.title;
 
     if (options.mode === "simulate") {
-        outcomeArray = simulatePermutationsWithRepititions(range, times)
+        outcomeArray = simulatePermutationsWithRepititions(range, times, accuracy)
     } else if (options.mode === "compute") {
         outcomeArray = permutationAlgorithm(range, times);
     }
 
-    return chanceCurry.bind(outcomeArray);
+    return function (description, func) {
+      var filtered = outcomeArray.filter(func);
+      console.log(colors.red.bold('Title: ' + title));
+      console.log(
+        colors.underline(`${options.mode === "simulate" ? "Estimated" : "Actual"}`),
+       `probability of`,
+       colors.bold(description),
+       colors.underline(`${filtered.length / outcomeArray.length * 100} %`)
+      );
+      console.log(colors.bold(showData ? `Data set: ` : `Data set not shown`));
+      console.log(
+        `${showData ? JSON.stringify(filtered).replace(/,(?=\[)/g, ' - ') : ""}`
+      );
+      console.log("\n");
+    }
   }
-
 
   function permutationAlgorithm(permutationOptions, permutationLength) {
     const outcomeArray = (function permutateWithRepetitions(permutationOptions, permutationLength) {
