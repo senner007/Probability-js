@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "dev": "webpack --watch main.js"
+    "dev": "webpack --watch --display=minimal main.js"
   },
   "repository": {
     "type": "git",
