@@ -10,9 +10,9 @@ const diceChance = () => {
         showData : true
     });
 
-    chance('sum greater than 15' , v => v.reduce((a, b) => a + b) > 15) 
-    chance('at least two of a kind', v => hasDuplicates(v));
-    chance('rolling a five', v => v.includes(5));  
+    chance('sum greater than 15' , arr => arr.reduce((a, b) => a + b) > 15) 
+    chance('at least two of a kind', arr => hasDuplicates(arr));
+    chance('rolling a five', arr => arr.includes(5));  
 
     chance('at least three of a kind', arr => {
         var obj = {};
@@ -24,6 +24,22 @@ const diceChance = () => {
 };
 
 diceChance();
+
+const towerDefence = () => {
+
+    var chance = Outcome({
+        title: "Five towers that each have a 20% probability of stopping an enemy",
+        mode : "compute",
+        range : [1, 2, 3, 4, 5], 
+        times : 5, 
+        showData : true
+    });
+
+    chance('at least one tower stopping the enemy', arr => arr.includes(1));  
+
+};
+
+towerDefence();
 
 const birthDayChance = () => {
     
