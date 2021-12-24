@@ -1,13 +1,18 @@
 const NodemonPlugin = require('nodemon-webpack-plugin'); // Ding
-const path = require('path');
- 
+var path = require('path');
+
 module.exports = {
-    mode : "development",
-    output: {
-        path: path.resolve('./dist'),
-        filename: 'bundled.js',
+  entry: './main.js',
+  output: {
+    path: path.resolve('./dist'),
+    filename: 'bundled.js',
+  },
+  plugins: [
+    new NodemonPlugin(), // Dong
+  ],
+  resolve: {
+    fallback: {
+        "os": require.resolve("os-browserify/browser")
     },
-    plugins: [
-        new NodemonPlugin(), // Dong
-    ]
+  },
 };
