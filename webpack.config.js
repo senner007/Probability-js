@@ -3,6 +3,7 @@ var path = require('path');
 
 module.exports = {
   entry: './main.js',
+  mode : "development",
   output: {
     path: path.resolve('./dist'),
     filename: 'bundled.js',
