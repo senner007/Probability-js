@@ -1,5 +1,5 @@
 import {hasDuplicates} from "./helpers/helpers";
-import Outcome from "./src/permutationsWithRepetitions";
+import Outcome, { printProbability } from "./src/permutationsWithRepetitions";
 
 const diceProbability = () => {
     var probability = Outcome({
@@ -14,13 +14,16 @@ const diceProbability = () => {
     probability('at least two of a kind', arr => hasDuplicates(arr));
     probability('rolling a five', arr => arr.includes(5));  
 
-    probability('at least three of a kind', arr => {
+    const atLeastThreeOfAKind = probability('at least three of a kind', arr => {
         var obj = {};
         for (let n of arr) {
             obj[n] = obj[n] ? obj[n] + 1 : 1;
             if (obj[n] === 3) return true;
         }
-    });  
+    }); 
+
+    printProbability(...atLeastThreeOfAKind)
+    
 };
 
 diceProbability();
@@ -57,9 +60,6 @@ const birthDayProbability = () => {
     probability('at least two people having the same birthday', v => hasDuplicates(v));
 };
  birthDayProbability();
-
-
-
 
 
 

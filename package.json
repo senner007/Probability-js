@@ -2,9 +2,10 @@
   "name": "Probability-js",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "examples.js",
   "scripts": {
-    "dev": "webpack --stats=minimal --watch ./main.js"
+    "dev": "webpack --stats=minimal --watch ./examples.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -18,11 +19,16 @@
   },
   "homepage": "https://github.com/senner007/Probability-js#readme",
   "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "babel-jest": "^27.4.5",
+    "jest": "^27.4.5",
     "nodemon-webpack-plugin": "4.7.0",
     "webpack": "5.65.0",
     "webpack-cli": "^4.9.1"
   },
   "dependencies": {
+    "@types/jest": "^27.0.3",
     "colors": "1.4.0",
     "os-browserify": "^0.3.0",
     "util": "^0.12.4"
