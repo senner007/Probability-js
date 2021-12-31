@@ -23,9 +23,14 @@ const [rollingOneAndTwo] = threeDices('rolling at least one 1 and at least one 2
     return arr.includes(1) && arr.includes(2)
 })
 
-
 const [rollingOneOrTwo] = threeDices('rolling a 1 or a 2', arr => {
     return arr.includes(1) || arr.includes(2)
+})
+
+describe('For 3 dices, rolling at least one 1 and at least one 2', () => {
+    test('Probability is equal to: 30/216', () => {
+        expect(rollingOneAndTwo).toEqual(30 / 216);
+    });
 })
 
 describe('For 3 dices, rolling at least one 1', () => {
