@@ -1,8 +1,8 @@
 import {hasDuplicates} from "./helpers/helpers";
 import Outcome, { printProbability } from "./src/permutationsWithRepetitions";
 
-const diceProbability = () => {
-    var probability = Outcome({
+;(() => {
+    const threeDices = Outcome({
         title: "throw dice 3 times",
         mode : "compute",
         range : [1, 2, 3, 4, 5, 6], // input range (eg. dice)
@@ -10,12 +10,12 @@ const diceProbability = () => {
         showData : true
     });
 
-    probability('sum greater than 15' , arr => arr.reduce((a, b) => a + b) > 15) 
-    probability('at least two of a kind', arr => hasDuplicates(arr));
-    probability('rolling a five', arr => arr.includes(5));  
+    threeDices('sum greater than 15' , arr => arr.reduce((a, b) => a + b) > 15) 
+    threeDices('at least two of a kind', arr => hasDuplicates(arr));
+    threeDices('rolling a five', arr => arr.includes(5));  
 
-    const atLeastThreeOfAKind = probability('at least three of a kind', arr => {
-        var obj = {};
+    const atLeastThreeOfAKind = threeDices('at least three of a kind', arr => {
+        const obj = {};
         for (let n of arr) {
             obj[n] = obj[n] ? obj[n] + 1 : 1;
             if (obj[n] === 3) return true;
@@ -24,13 +24,10 @@ const diceProbability = () => {
 
     printProbability(...atLeastThreeOfAKind)
     
-};
+})();
 
-diceProbability();
-
-const towerDefence = () => {
-
-    var probability = Outcome({
+;(() => {
+    const towerDefense = Outcome({
         title: "Five towers that each have a 20% probability of stopping an enemy",
         mode : "compute",
         range : [1, 2, 3, 4, 5], 
@@ -38,17 +35,15 @@ const towerDefence = () => {
         showData : true
     });
 
-    probability('at least one tower stopping the enemy', arr => arr.includes(1));  
+    towerDefense('at least one tower stopping the enemy', arr => arr.includes(1));  
 
-};
+})();
 
-towerDefence();
-
-const birthDayProbability = () => {
+;(() => {
     
     const range = Array.from({length : 366}, (n,i) => i +1);
-    var n = 100;
-    var probability = Outcome({
+    const n = 100;
+    const birtdays = Outcome({
         title : "100 people with random birthdays",
         mode : "simulate",
         range : range,
@@ -57,9 +52,8 @@ const birthDayProbability = () => {
         showData : false
     });
     
-    probability('at least two people having the same birthday', v => hasDuplicates(v));
-};
- birthDayProbability();
+    birtdays('at least two people having the same birthday', v => hasDuplicates(v));
+})();
 
 
 
