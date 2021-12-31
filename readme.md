@@ -1,8 +1,8 @@
-## TO INSTALL:
+#### TO INSTALL:
 - npm install
 
-## TO RUN :
+#### TO RUN :
 - npm run dev
 
-## TO TEST:
+#### TO TEST:
 - npm run test
