@@ -50,6 +50,10 @@ const [rollingTwoSameAndOneDifferent] = threeDices('rolling two same and one dif
 
 describe('For 3 dices, all dices being different', () => {
 
+    test('Probability is equal to: 6/6 * 5/6 * 4/6 = 120/216', () => {
+        expect(rollingAllDifferent).toEqual(6/6 * 5/6 * 4/6);
+    });
+
     test('Probability is equal to: 120/216', () => {
         expect(rollingAllDifferent).toEqual(120/216);
     });
