@@ -2,7 +2,7 @@ import Outcomes from "../src/permutationsWithRepetitions";
 import { mapToDistribution } from "../helpers/helpers";
 
 const fiveBalls = Outcomes({
-    title: "3 blue, 3 green, 2 orange",
+    title: "Blue, Green and Orange",
     isDependent: true,
     mode: "compute",
     range: ["B", "B", "B", "G", "G", "G", "O", "O"],
