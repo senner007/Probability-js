@@ -1,15 +1,24 @@
 var colors = require('colors/safe');
 colors.enable();
-export default function Outcome(options) {
-  var outcomeArray;
+export default function Outcomes(options) {
+  
+  if (options.mode == "simulate" && options.isDependent) {
+    throw new Error("simulation mode for dependent events not implemented yet");
+  }
+
   const range = options.range;
   const times = options.times;
-  const accuracy = options.simulationAccuracy
+  const accuracy = options.simulationAccurac
 
+  var outcomeArray;
   if (options.mode === "simulate") {
     outcomeArray = simulatePermutationsWithRepititions(range, times, accuracy)
   } else if (options.mode === "compute") {
-    outcomeArray = permutationAlgorithm(range, times);
+    if (options.isDependent) {
+      outcomeArray = combineWithoutRepetitions(range, times);
+    } else {
+      outcomeArray = permutationWithRepetitions(range, times);
+    }
   }
 
   return function (description, func) {
@@ -24,7 +33,6 @@ export default function Outcome(options) {
 
   }
 }
-
 
 export function printProbability(probability, description, options, filteredData) {
   console.log(colors.red.bold('Title: ' + options.title));
@@ -41,7 +49,7 @@ export function printProbability(probability, description, options, filteredData
   console.log("\n");
 }
 
-function permutationAlgorithm(permutationOptions, permutationLength) {
+function permutationWithRepetitions(permutationOptions, permutationLength) {
   const outcomeArray = (function permutateWithRepetitions(permutationOptions, permutationLength) {
     if (permutationLength === 1) {
       return permutationOptions.map(permutationOption => [permutationOption]);
@@ -65,6 +73,35 @@ function permutationAlgorithm(permutationOptions, permutationLength) {
     return permutations;
   })(permutationOptions, permutationLength);
   return outcomeArray;
+}
+
+
+function combineWithoutRepetitions(comboOptions, comboLength) {
+  // If the length of the combination is 1 then each element of the original array
+  // is a combination itself.
+  if (comboLength === 1) {
+    return comboOptions.map((comboOption) => [comboOption]);
+  }
+
+  // Init combinations array.
+  const combos = [];
+
+  // Extract characters one by one and concatenate them to combinations of smaller lengths.
+  // We need to extract them because we don't want to have repetitions after concatenation.
+  comboOptions.forEach((currentOption, optionIndex) => {
+    // Generate combinations of smaller size.
+    const smallerCombos = combineWithoutRepetitions(
+      comboOptions.slice(optionIndex + 1),
+      comboLength - 1,
+    );
+
+    // Concatenate currentOption with all combinations of smaller size.
+    smallerCombos.forEach((smallerCombo) => {
+      combos.push([currentOption].concat(smallerCombo));
+    });
+  });
+
+  return combos;
 }
 
 function simulatePermutationsWithRepititions(range, times, accuracy = 100) {

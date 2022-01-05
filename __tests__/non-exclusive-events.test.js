@@ -1,10 +1,10 @@
-import Outcome from "../src/permutationsWithRepetitions";
-import { hasDuplicates } from "../helpers/helpers";
+import Outcomes from "../src/permutationsWithRepetitions";
+import { hasDuplicates, mapToDistribution } from "../helpers/helpers";
 
 const N_THROWS = 3;
 const N_RANGE = 6
 
-const threeDices = Outcome({
+const threeDices = Outcomes({
     title: `throw dice ${N_THROWS} times`,
     mode: "compute",
     range: Array.from({ length: N_RANGE }, (n, i) => i + 1), // input range (eg. dice)
@@ -29,10 +29,9 @@ const [rollingOneOrTwo] = threeDices('rolling a 1 or a 2', arr => {
 })
 
 const [rollingAllEqual] = threeDices('all dices being equal', arr => {
-    var obj = {};
-    for (let n of arr) {
-        obj[n] = obj[n] ? obj[n] + 1 : 1;
-        if (obj[n] === 3) return true;
+    const distribution = mapToDistribution(arr);
+    if (Object.values(distribution).includes(3)) {
+        return true;
     }
 })
 
@@ -41,11 +40,8 @@ const [rollingAllDifferent] = threeDices('all dices being different', arr => {
 })
 
 const [rollingTwoSameAndOneDifferent] = threeDices('rolling two same and one different', arr => {
-    var obj = {};
-    for (let n of arr) {
-        obj[n] = obj[n] ? obj[n] + 1 : 1;
-    }
-    return Object.values(obj).some(entry => entry == 2)
+    const distribution = mapToDistribution(arr);
+    return Object.values(distribution).some(entry => entry == 2)
 })
 
 describe('For 3 dices, all dices being different', () => {
