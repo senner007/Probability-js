@@ -70,12 +70,12 @@ import Outcomes, { printProbability } from "./src/permutationsWithRepetitions";
         showData: true
     });
 
-    const twoBlueTwoGreenOneOrange = fourBalls('selecting 1 blue ball, 2 green balls and 1 orange ball', arr => {
+    const oneBlueTwoGreenOneOrange = fourBalls('selecting 1 blue ball, 2 green balls and 1 orange ball', arr => {
         const distribution = mapToDistribution(arr);
         return distribution["B"] == 1 && distribution["G"] == 2 && distribution["O"] == 1
     });
 
-    printProbability(...twoBlueTwoGreenOneOrange)
+    printProbability(...oneBlueTwoGreenOneOrange)
 })();
 
 
