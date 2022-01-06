@@ -1,7 +1,7 @@
 var colors = require('colors/safe');
 colors.enable();
 export default function Outcomes(options) {
-  
+
   if (options.mode == "simulate" && options.isDependent) {
     throw new Error("simulation mode for dependent events not implemented yet");
   }
@@ -15,7 +15,13 @@ export default function Outcomes(options) {
     outcomeArray = simulatePermutationsWithRepititions(range, times, accuracy)
   } else if (options.mode === "compute") {
     if (options.isDependent) {
-      outcomeArray = combineWithoutRepetitions(range, times);
+      // kSubsetPermutations and combineWithoutRepetitions should produce the same results with same probability. 
+      // kSubsetPermutations creates permutations of length k from array where order matters and uses more computations
+      if (options.showData) {
+        outcomeArray = kSubsetPermutations(range, times);
+      } else {
+        outcomeArray = combineWithoutRepetitions(range, times);
+      }
     } else {
       outcomeArray = permutationWithRepetitions(range, times);
     }
@@ -103,6 +109,26 @@ function combineWithoutRepetitions(comboOptions, comboLength) {
 
   return combos;
 }
+
+function kSubsetPermutations(set, k, partial = []) {
+  const results = []
+  function recurse(set, k, partial = []) {
+    for (const element in set) {
+      if (k > 1) {
+        const set_copy = set.slice();         // slice() creates copy of array
+        set_copy.splice(element, 1);        // splice() removes element from array
+        recurse(set_copy, k - 1, partial.concat([set[element]]));
+      }                                       // a.concat(b) appends b to copy of a
+      else {
+        results.push(partial.concat([set[element]]))
+      }
+
+    }
+  }
+  recurse(set, k)
+  return results
+}
+
 
 function simulatePermutationsWithRepititions(range, times, accuracy = 100) {
 

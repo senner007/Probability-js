@@ -2,12 +2,12 @@ import Outcomes from "../src/permutationsWithRepetitions";
 import { mapToDistribution } from "../helpers/helpers";
 
 const fiveBalls = Outcomes({
-    title: "Blue, Green and Orange",
+    title: "Picking a subset from a collection of blue(B), green(G) and orange(O) balls without replacement",
     isDependent: true,
     mode: "compute",
     range: ["B", "B", "B", "G", "G", "G", "O", "O"],
     times: 5,
-    showData: true
+    showData: false
 });
 
 const [twoBlueTwoGreenOneOrange] = fiveBalls('selecting 2 blue balls, 2 green balls and 1 orange ball', arr => {
