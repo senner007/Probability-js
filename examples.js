@@ -61,7 +61,7 @@ import Outcomes, { printProbability } from "./src/permutationsWithRepetitions";
 
 ; (() => {
 
-    const fiveBalls = Outcomes({
+    const fourBalls = Outcomes({
         title: "Picking a subset from a collection of blue(B), green(G) and orange(O) balls without replacement",
         isDependent: true,
         mode: "compute",
@@ -70,7 +70,7 @@ import Outcomes, { printProbability } from "./src/permutationsWithRepetitions";
         showData: true
     });
 
-    const twoBlueTwoGreenOneOrange = fiveBalls('selecting 1 blue ball, 2 green balls and 1 orange ball', arr => {
+    const twoBlueTwoGreenOneOrange = fourBalls('selecting 1 blue ball, 2 green balls and 1 orange ball', arr => {
         const distribution = mapToDistribution(arr);
         return distribution["B"] == 1 && distribution["G"] == 2 && distribution["O"] == 1
     });
