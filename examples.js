@@ -15,17 +15,15 @@ import Outcomes, { printProbability } from "./src/outcomes";
     const atLeastTwoOfAKind = threeDices('at least two of a kind', arr => hasDuplicates(arr));
     const atLeastRollingAFive = threeDices('rolling a five', arr => arr.includes(5));
 
-    const atLeastThreeOfAKind = threeDices('at least three of a kind', arr => {
+    const threeOfAKind = threeDices('three of a kind', arr => {
         const distribution = mapToDistribution(arr);
-        if (Object.values(distribution).includes(3)) {
-            return true;
-        }
+        return Object.values(distribution).includes(3)
     });
 
     printProbability(...sumGreaterThan15);
     printProbability(...atLeastTwoOfAKind)
     printProbability(...atLeastRollingAFive)
-    printProbability(...atLeastThreeOfAKind)
+    printProbability(...threeOfAKind)
 })();
 
 ; (() => {

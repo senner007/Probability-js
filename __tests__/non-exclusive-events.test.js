@@ -30,9 +30,7 @@ const [rollingOneOrTwo] = threeDices('rolling a 1 or a 2', arr => {
 
 const [rollingAllEqual] = threeDices('all dices being equal', arr => {
     const distribution = mapToDistribution(arr);
-    if (Object.values(distribution).includes(3)) {
-        return true;
-    }
+    return Object.values(distribution).includes(3)
 })
 
 const [rollingAllDifferent] = threeDices('all dices being different', arr => {
