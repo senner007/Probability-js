@@ -1,4 +1,4 @@
-import Outcomes from "../src/permutationsWithRepetitions";
+import Outcomes from "../src/outcomes";
 import { mapToDistribution } from "../helpers/helpers";
 
 describe('Test equality of probability methods for calculating permutation subsets', () => {
@@ -23,7 +23,6 @@ describe('Test equality of probability methods for calculating permutation subse
         }
 
         const [probabilityShowDataFalse] = fiveBallsShowDataFalse('selecting 2 blue balls, 2 green balls and 1 orange ball', cb);
-
         const [probabilityShowData] = fiveBallsShowData('selecting 2 blue balls, 2 green balls and 1 orange ball', cb);
 
         test('Probability is equal to: 3/8 * 2/7 * 3/6 * 2/5 * 2/4 * 5!/2!*2!', () => {

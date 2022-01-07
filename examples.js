@@ -1,5 +1,5 @@
 import { hasDuplicates, mapToDistribution } from "./helpers/helpers";
-import Outcomes, { printProbability } from "./src/permutationsWithRepetitions";
+import Outcomes, { printProbability } from "./src/outcomes";
 
 ; (() => {
     const threeDices = Outcomes({
@@ -60,7 +60,6 @@ import Outcomes, { printProbability } from "./src/permutationsWithRepetitions";
 })();
 
 ; (() => {
-
     const fourBalls = Outcomes({
         title: "Picking a subset from a collection of blue(B), green(G) and orange(O) balls without replacement",
         isDependent: true,

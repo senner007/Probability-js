@@ -1,4 +1,4 @@
-import Outcomes from "../src/permutationsWithRepetitions";
+import Outcomes from "../src/outcomes";
 import { hasDuplicates, mapToDistribution } from "../helpers/helpers";
 
 const N_THROWS = 3;
