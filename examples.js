@@ -56,9 +56,9 @@ import Outcomes, { printProbability } from "./src/outcomes";
         showData: false
     });
 
-    const birthdayCondundrum = peoplesBirthday('at least two people having the same birthday', v => hasDuplicates(v));
+    const birthdayConundrum = peoplesBirthday('at least two people having the same birthday', v => hasDuplicates(v));
 
-    printProbability(...birthdayCondundrum)
+    printProbability(...birthdayConundrum)
 
 
 })();
