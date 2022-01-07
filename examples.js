@@ -46,7 +46,7 @@ import Outcomes, { printProbability } from "./src/outcomes";
 ; (() => {
     const range = Array.from({ length: 366 }, (n, i) => i + 1);
     const n = 100;
-    const birtdays = Outcomes({
+    const peoplesBirthday = Outcomes({
         title: "100 people with random birthdays",
         isDependent: false,
         mode: "simulate",
@@ -56,7 +56,11 @@ import Outcomes, { printProbability } from "./src/outcomes";
         showData: false
     });
 
-    birtdays('at least two people having the same birthday', v => hasDuplicates(v));
+    const birthdayCondundrum = peoplesBirthday('at least two people having the same birthday', v => hasDuplicates(v));
+
+    printProbability(...birthdayCondundrum)
+
+
 })();
 
 ; (() => {

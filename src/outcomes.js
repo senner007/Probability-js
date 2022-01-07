@@ -49,7 +49,7 @@ export function printProbability(probability, description, options, filteredData
     colors.underline(`${options.mode === "simulate" ? "Estimated" : "Actual"}`),
     `probability of`,
     colors.bold(description),
-    colors.underline(`${probability * 100} %`)
+    colors.underline(`: ${probability * 100} %`)
   );
 
   console.log(
