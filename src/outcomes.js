@@ -11,7 +11,7 @@ export default function Outcomes(options) {
 
   const range = options.range;
   const times = options.times;
-  const accuracy = options.simulationAccurac
+  const accuracy = options.simulationAccuracy
 
   var outcomeArray;
   if (options.mode === "simulate") {
