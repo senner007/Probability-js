@@ -47,7 +47,7 @@ import Outcomes, { printProbability } from "./src/outcomes";
         title: "100 people with random birthdays",
         isDependent: false,
         mode: "simulate",
-        range: Array.from({ length: 365 }, (n, i) => i + 1),
+        range: range,
         times: 100,
         simulationAccuracy: 10000,
         showData: false
