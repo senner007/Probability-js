@@ -42,7 +42,7 @@ import Outcomes, { printProbability } from "./src/outcomes";
 })();
 
 ; (() => {
-    const range = Array.from({ length: 366 }, (n, i) => i + 1);
+    const range = Array.from({ length: 365 }, (n, i) => i + 1);
     const n = 100;
     const peoplesBirthday = Outcomes({
         title: "100 people with random birthdays",
