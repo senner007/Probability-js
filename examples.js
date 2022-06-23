@@ -13,7 +13,7 @@ import Outcomes, { printProbability } from "./src/outcomes";
 
     const sumGreaterThan15 = threeDices('sum greater than 15', arr => arr.reduce((a, b) => a + b) > 15)
     const atLeastTwoOfAKind = threeDices('at least two of a kind', arr => hasDuplicates(arr));
-    const atLeastRollingAFive = threeDices('rolling a five', arr => arr.includes(5));
+    const atLeastAFive = threeDices('rolling a five', arr => arr.includes(5));
 
     const threeOfAKind = threeDices('three of a kind', arr => {
         const distribution = mapToDistribution(arr);
@@ -22,7 +22,7 @@ import Outcomes, { printProbability } from "./src/outcomes";
 
     printProbability(...sumGreaterThan15);
     printProbability(...atLeastTwoOfAKind)
-    printProbability(...atLeastRollingAFive)
+    printProbability(...atLeastAFive)
     printProbability(...threeOfAKind)
 })();
 
@@ -59,7 +59,7 @@ import Outcomes, { printProbability } from "./src/outcomes";
 })();
 
 ; (() => {
-    const fourBalls = Outcomes({
+    const selectingWithoutReplacement = Outcomes({
         title: "Picking a subset from a collection of blue(B), green(G) and orange(O) balls without replacement",
         isDependent: true,
         mode: "compute",
@@ -68,7 +68,7 @@ import Outcomes, { printProbability } from "./src/outcomes";
         showData: true
     });
 
-    const oneBlueTwoGreenOneOrange = fourBalls('selecting 1 blue ball, 2 green balls and 1 orange ball', arr => {
+    const oneBlueTwoGreenOneOrange = selectingWithoutReplacement('selecting 1 blue ball, 2 green balls and 1 orange ball', arr => {
         const distribution = mapToDistribution(arr);
         return distribution["B"] == 1 && distribution["G"] == 2 && distribution["O"] == 1
     });

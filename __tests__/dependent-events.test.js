@@ -3,7 +3,9 @@ import { mapToDistribution } from "../helpers/helpers";
 
 describe('Test equality of probability methods for calculating permutation subsets', () => {
 
-    describe('Selecting 2 blue balls, 2 green balls and 1 orange ball', () => {
+    const message = 'Selecting 2 blue balls, 2 green balls and 1 orange ball';
+
+    describe(message, () => {
 
         const options = {
             title: "Picking a subset from a collection of blue(B), green(G) and orange(O) balls without replacement",
@@ -21,9 +23,9 @@ describe('Test equality of probability methods for calculating permutation subse
             const distribution = mapToDistribution(arr);
             return distribution["B"] == 2 && distribution["G"] == 2 && distribution["O"] == 1
         }
-
-        const [probabilityShowDataFalse] = fiveBallsShowDataFalse('selecting 2 blue balls, 2 green balls and 1 orange ball', cb);
-        const [probabilityShowData] = fiveBallsShowData('selecting 2 blue balls, 2 green balls and 1 orange ball', cb);
+        
+        const [probabilityShowDataFalse] = fiveBallsShowDataFalse(message, cb);
+        const [probabilityShowData] = fiveBallsShowData(message, cb);
 
         test('Probability is equal to: 3/8 * 2/7 * 3/6 * 2/5 * 2/4 * 5!/2!*2!', () => {
             const calc = 3 / 8 * 2 / 7 * 3 / 6 * 2 / 5 * 2 / 4 * 5 * 4 * 3 / 2
