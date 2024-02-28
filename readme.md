@@ -1,4 +1,4 @@
-Propbability with Javascript
+Algorithmic probability and their mathematical equivalents.
 
 #### TO INSTALL:
 - npm install
